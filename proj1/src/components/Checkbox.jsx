@@ -1,12 +1,12 @@
 import '../styles/Checkbox.css';
+import SingleCheckbox from './SingleCheckbox.jsx';
 
-export default function Checkbox() {
+export default function Checkbox({carColors, onColorChange}) {
+    // console.log(carColors);
     return (
         <div className='checkmarks-wrapper'>
-            <label className='checkmark-container'>
-                <input className="color-selector" type="checkbox" checked />
-                <span className='checkmark'></span>
-            </label>
+            {carColors.map((color) =>  (<SingleCheckbox color={color} onColorChange={onColorChange} name="color" />))}
         </div>      
     );
 }
+

@@ -12,7 +12,7 @@ export default function Homepage () {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('https://server-wheat-eight.vercel.app/get_cars', {  
+                const response = await axios.get('http://localhost:3001/get_cars', {  
                 params: {pagenum: pageNumber}
             });
         
@@ -31,7 +31,7 @@ export default function Homepage () {
 
     return (
         <div className='homepage-wrapper'>
-            <CardsList data={data}/>
+            <CardsList data={data} />
             <div className='page-selector'>
                 {pageNumber > 1 && <button className='pagerange' onClick={() => setPageNumber(((pageNumber - 1) === 0) ? 3 : (pageNumber - 1))}>PREV</button>}
                 {pages.map((pagenum) => <button className={`page ${pagenum === pageNumber ? 'active' : ''}`} onClick={() => setPageNumber(pagenum)}>{pagenum}</button>)}

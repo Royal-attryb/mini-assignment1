@@ -1,11 +1,11 @@
 .rating {
-    border: 1px solid red;
+    margin-left: -2px;
 }
 
 .rating--star {
     height: 20px;
     width: 20px;
-    opacity: .3; 
+    opacity: 0.4; 
 }
 
 .rating--star__active {
