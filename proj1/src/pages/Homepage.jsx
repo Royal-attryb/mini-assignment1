@@ -33,9 +33,9 @@ export default function Homepage () {
         <div className='homepage-wrapper'>
             <CardsList data={data}/>
             <div className='page-selector'>
-                <button className='page' onClick={() => setPageNumber(((pageNumber - 1) == 0) ? 3 : (pageNumber - 1))}>&lt;</button>
+                {pageNumber > 1 && <button className='pagerange' onClick={() => setPageNumber(((pageNumber - 1) == 0) ? 3 : (pageNumber - 1))}>PREV</button>}
                 {pages.map((pagenum) => <button className={`page ${pagenum === pageNumber ? 'active' : ''}`} onClick={() => setPageNumber(pagenum)}>{pagenum}</button>)}
-                <button className='page' onClick={() => setPageNumber(((pageNumber + 1) == 4) ? 1 : (pageNumber + 1))}>&gt;</button>
+                {pageNumber < 3 && <button className='pagerange' onClick={() => setPageNumber(((pageNumber + 1) == 4) ? 1 : (pageNumber + 1))}>NEXT</button>}
             </div>
         </div>
     );
