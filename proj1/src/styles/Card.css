@@ -1,8 +1,48 @@
 .card-image-wrapper {
-    background-color: grey;
+    padding: 40.95% 0;
+    background-color: #f2f2f2;
+    vertical-align: baseline;
 }
 .card-image {
-    width: 100%;
     height: 100%;
+    width: 100%;
     max-width: 100%;
+    object-fit: cover;
 }
+
+.card-heading {
+    padding-top: 10px; 
+}
+.card-details-color {
+    font-size: 11.6667px;
+    margin: auto;
+    font-weight: 400;
+    margin-right: 0.5rem;
+}
+
+.card-details-price {
+    display: inline;
+}
+
+.card-wrapper {
+    padding: 20px 5px;
+}
+
+@media (min-width: 769px) {
+    .card-heading, .card-details-price {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+    .card-heading, .card-details-price {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-heading, .card-details-price {
+        font-size: 14px;
+    }
+}
+

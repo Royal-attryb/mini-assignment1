@@ -14,11 +14,13 @@ export default function Card (props) {
         <div className="card-wrapper">
             <div className="card-image-wrapper">
                 <img className="card-image" src={props.car.image} alt="car" />
+                
+                
             </div>
             <h3 className="card-heading">{props.car.name}</h3>
             <div className="card-details">
-                <em className="card-details-color">{props.car.color} </em>
-                <span className="card-details-price">{formattedCurrency}</span>
+                <small className="card-details-color">{props.car.color} </small>
+                <h3 className="card-details-price">{formattedCurrency}</h3>
             </div>
         </div>
     );
