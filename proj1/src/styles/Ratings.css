@@ -1,0 +1,13 @@
+.rating {
+    border: 1px solid red;
+}
+
+.rating--star {
+    height: 20px;
+    width: 20px;
+    opacity: .3; 
+}
+
+.rating--star__active {
+    opacity: 1;
+}

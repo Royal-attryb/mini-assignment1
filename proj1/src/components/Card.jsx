@@ -1,7 +1,10 @@
-import image from '../assets/images/car3.png';
 import '../styles/Card.css';
+import Checkbox from './Checkbox.jsx';
+import Ratings from './Ratings.jsx';
 
 export default function Card (props) {
+    const colors = ['Red', 'Blue', 'Green'];
+    const rating = 3;
     console.log(props);
     const formattedCurrency = new Intl.NumberFormat('en-US', {
         style: 'currency',
@@ -13,14 +16,14 @@ export default function Card (props) {
     return (
         <div className="card-wrapper">
             <div className="card-image-wrapper">
-                <img className="card-image" src={props.car.image} alt="car" />
-                
-                
+                <img className="card-image" src={props.car.image} alt="car" />      
             </div>
             <h3 className="card-heading">{props.car.name}</h3>
             <div className="card-details">
-                <small className="card-details-color">{props.car.color} </small>
                 <h3 className="card-details-price">{formattedCurrency}</h3>
+                {/* <small className="card-details-color">{props.car.color} </small> */}
+                <Checkbox />
+                <Ratings />
             </div>
         </div>
     );
