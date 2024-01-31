@@ -49,15 +49,20 @@
 }
 
 .hover-image {
-    opacity: 0.5;
+    opacity: 0.3;
     /* border: 1px solid red; */
 }
 
 .bag {
+    color: black;
     height: 20px;
     position: absolute;
-    top: 60%;
-    left: 89%;
+    top: 55%;
+    left: 85%;
+    /* border: 1px solid red; */
+    border-radius: 15px;
+    background: white;
+    padding: 2.5%;
 }
 
 @media (max-width: 900px) {
@@ -75,19 +80,19 @@
 @media (min-width: 481px) and (max-width: 600px) {
     .bag {
         /* height: 15px; */
-        left: 88%;
+        left: 84%;
     }
 }
 
 @media (min-width: 601px) and (max-width: 768px) {
     .bag {
-        left: 90%;
+        left: 86%;
     }
 }
 
 @media (min-width: 769px) and (max-width: 900px) {
     .bag {
         /* height: 15px; */
-        left: 89%;
+        left: 85%;
     }
 }
