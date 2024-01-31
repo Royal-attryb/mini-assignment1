@@ -2,44 +2,71 @@ import '../styles/Card.css';
 import Checkbox from './Checkbox.jsx';
 import Ratings from './Ratings.jsx';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
+import bag from '../assets/images/bag.png';
 
-export default function Card ({carModel, carColors, data}) {
-    // console.log(props);
-    const [color, setColor] = useState(carColors[0]);
-    const [ratingImagePrice, setRatingImagePrice] = useState(getRating(carModel, color));
+export default function Card ({carModel, carColors, carPrices, carRatings, carImages, onItemCountChange}) {
+    const [selectedColor, setSelectedColor] = useState(carColors[0]);
+    const [selectedVariant, setSelectedVariant] = useState({"price": carPrices[0], "image": carImages[0], "rating": carRatings[0]});
+    const [hover, setHover] = useState(false);
+
+    // console.log(selectedColor);
+    useEffect(() => {
+        async function fetchCar() {
+            try {
+                const response = await axios.get('https://server-wheat-eight.vercel.app/get_car', {
+                    params: {
+                        model: carModel,
+                        color: selectedColor
+                    }
+                });
+
+                setSelectedVariant({"price" : response.data.price, "image" : response.data.image, "rating": response.data.rating});
+            } catch (error) {
+                
+            }
+        }
+
+        fetchCar();
+    }, [selectedColor]);
+    
+    function handleColorChange (color) {
+        setSelectedColor(color);
+    }
+
     const formattedCurrency = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
         minimumFractionDigits: 0,
         maximumFractionDigits: 0
-      }).format(ratingImagePrice.price);
-
-    useEffect(() => {
-        setRatingImagePrice(getRating(carModel, color));
-    }, [color]);
-
-    function getRating(modelName, modelColor) {
-        const matchingItem = data.find(item => item.name === modelName && item.color === modelColor);
-      
-        if (matchingItem) {
-          return {"rating": matchingItem.rating, "image": matchingItem.image, "price": matchingItem.price};
-        } else {
-          return null; // No matching item found
-        }
-    }
+      }).format(selectedVariant.price);
     
-    // console.log(rating);
+    const defaultImage = (
+        <div className="card-image-wrapper" >
+            <img className="card-image" src={selectedVariant.image} alt="car" onMouseOver={() => {setHover(true);}} onMouseOut={() => {setHover(false);}} />
+        </div>
+        );
+
+    const hoverImage = (
+        <div className="card-image-wrapper" >
+            <img className="card-image hover-image" src={selectedVariant.image} alt="car" onMouseOver={() => {setHover(true);}} onMouseOut={() => {setHover(false);}} />
+            <img className='bag' src={bag} onClick={handleBagClick} onMouseOver={() => {setHover(true);}}/>  
+        </div>    
+    );
+
+    function handleBagClick() {
+        onItemCountChange(true);
+    }
+
     return (
-        <div className="card-wrapper">
-            <div className="card-image-wrapper">
-                <img className="card-image" src={ratingImagePrice.image} alt="car" />      
-            </div>
+        <div className="card-wrapper" key={selectedVariant.image} >
+                {hover ? hoverImage : defaultImage}    
             <h3 className="card-heading">{carModel}</h3>
             <div className="card-details">
                 <h3 className="card-details-price">{formattedCurrency}</h3>
-                <small className="card-details-color">{color} </small>
-                <Checkbox carColors={carColors} onColorChange={(color) => {setColor(color)}}/>
-                <Ratings rating={ratingImagePrice.rating}/>
+                <small className="card-details-color">{selectedVariant.color}</small>
+                <Checkbox carColors={carColors} onColorChange={handleColorChange} selectedColor={selectedColor}/>
+                <Ratings rating={selectedVariant.rating} />
             </div>
         </div>
     );
