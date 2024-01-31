@@ -8,6 +8,7 @@
     ],
     "routes": [
       { "src": "/", "dest": "/server.js" },
-      { "src": "/get_cars", "dest": "/server.js" }
+      { "src": "/get_cars", "dest": "/server.js" },
+      { "src": "/get_car", "dest": "/server.js" }
     ]
   }
