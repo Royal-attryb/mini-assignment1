@@ -14,7 +14,7 @@ export default function Homepage () {
     useEffect(() => {
         async function fetchData() {
             try {
-                const response = await axios.get('https://server-wheat-eight.vercel.app/get_cars', {  
+                const response = await axios.get('http://localhost:8000/get_cars', {  
                 params: {pagenum: pageNumber}
             });
         
